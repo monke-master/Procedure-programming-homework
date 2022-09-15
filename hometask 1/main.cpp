@@ -4,32 +4,35 @@
 using namespace std;
 
 void task1() {
-    cout << "Ð˜Ð³Ð¾Ñ€ÑŒ Ð¡Ñ‚Ñ€ÐµÑˆÐ½ÐµÐ²";
+    string name;
+    cout << "Ââåäèòå âàøå èìÿ:" << endl;
+    cin >> name;
+    cout << "Ïðèâåò, " << name << "!" << endl;
 }
 
 void task2() {
-    int x, y;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð²Ð° Ñ†ÐµÐ»Ñ‹Ñ… Ñ‡Ð¸ÑÐ»Ð°" << endl;
+    double x, y;
+    cout << "Ââåäèòå öåëûõ ÷èñëà" << endl;
     cin >> x >> y;
 
-    cout << "Ð¡ÑƒÐ¼Ð¼Ð°: " << x + y << endl;
-    cout << "Ð Ð°Ð·Ð½Ð¾ÑÑ‚ÑŒ: " << x - y << endl;
-    cout << "ÐŸÑ€Ð¾Ð¸Ð·Ð²ÐµÐ´ÐµÐ½Ð¸Ðµ: " << x*y << endl;
-    if (x % y == 0)
-        cout << "Ð”ÐµÐ»ÐµÐ½Ð¸Ðµ: " << x / y << endl;
+    cout << "Ñóììà: " << x + y << endl;
+    cout << "Ðàçíîñòü: " << x - y << endl;
+    cout << "Ïðîèçâåäåíèå: " << x*y << endl;
+    if (y != 0)
+        cout << "Äåëåíèå: " << x / y << endl;
     else
-        cout << "x Ð½Ðµ Ð´ÐµÐ»Ð¸Ñ‚ÑÑ Ð½Ð° y";
+        cout << "Íà íîëü äåëèòü íåëüçÿ!";
 }
 
 void task3() {
     double b, c;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ b Ð¸ c" << endl;
+    cout << "Ââåäèòå b è c" << endl;
     cin >> b >> c;
 
     if (b == 0 && c == 0)
-        cout << "Ñ… - Ð»ÑŽÐ±Ð¾Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾" << endl;
+        cout << "õ - ëþáîå äåéñòâèòåëüíîå ÷èñëî" << endl;
     else if (b == 0)
-        cout << "ÐÐµÑ‚ ÐºÐ¾Ñ€Ð½ÐµÐ¹" << endl;
+        cout << "Íåò êîðíåé" << endl;
     else
         cout << "x = " << -c/b << endl;
 }
@@ -37,19 +40,19 @@ void task3() {
 void task4() {
     double a,b,c,d,x1,x2;
 
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ a" << endl;
+    cout << "Ââåäèòå a" << endl;
     cin >> a;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ b" << endl;
+    cout << "Ââåäèòå b" << endl;
     cin >> b;
-    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ c" << endl;
+    cout << "Ââåäèòå c" << endl;
     cin >> c;
 
     d = b * b - 4 * a * c;
     if (a == 0) {
         if (b == 0 && c == 0)
-            cout << "Ñ… - Ð»ÑŽÐ±Ð¾Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾" << endl;
+            cout << "õ - ëþáîå äåéñòâèòåëüíîå ÷èñëî" << endl;
         else if (b == 0)
-            cout << "ÐÐµÑ‚ ÐºÐ¾Ñ€Ð½ÐµÐ¹" << endl;
+            cout << "Íåò êîðíåé" << endl;
         else
             cout << "x = " << -c/b << endl;
     }
@@ -64,53 +67,48 @@ void task4() {
         cout << "x1 = x2 = " << x1 << endl;
     }
     else
-        cout << "ÐÐµÑ‚ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ñ… ÐºÐ¾Ñ€Ð½ÐµÐ¹" << endl;
+        cout << "Íåò äåéñòâèòåëüíûõ êîðíåé" << endl;
 }
 
 
 void task5() {
 
-    string day, lamp, curtains;
+    int time;
+    string lamp, curtains;
     bool isDay, isLamp, isCurtains;
 
-    while (!(day == "Y" || day == "N")) {
-        cout << "ÐÐ° ÑƒÐ»Ð¸Ñ†Ðµ Ð´ÐµÐ½ÑŒ? [Y/N]" << endl;
-        cin >> day;
-        if (day == "Y")
-            isDay = true;
-        else if (day == "N")
-            isDay = false;
-        else
-            cout << "ÐÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚ Ð²Ñ…Ð¾Ð´Ð½Ñ‹Ñ… Ð´Ð°Ð½Ð½Ñ‹Ñ…!" << endl;
-    }
+    cout << "Ââåäèòå òåêóùèé ÷àñ:" << endl;
+    cin >> time;
+
+    isDay = (time > 6) && (time < 21);
 
     while (!(curtains == "Y" || curtains == "N")) {
-        cout << "Ð¨Ñ‚Ð¾Ñ€Ñ‹ Ñ€Ð°Ð·Ð´Ð²Ð¸Ð½ÑƒÑ‚Ñ‹ [Y/N]?" << endl;
+        cout << "Øòîðû ðàçäâèíóòû [Y/N]?" << endl;
         cin >> curtains;
         if (curtains == "Y")
             isCurtains = true;
         else if (curtains == "N")
             isCurtains = false;
         else
-            cout << "ÐÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚ Ð²Ñ…Ð¾Ð´Ð½Ñ‹Ñ… Ð´Ð°Ð½Ð½Ñ‹Ñ…!" << endl;
+            cout << "Íåïðàâèëüíûé ôîðìàò âõîäíûõ äàííûõ!" << endl;
     }
 
 
     while (!(lamp == "Y" || lamp == "N")) {
-        cout << "Ð›Ð°Ð¼Ð¿Ð° Ð²ÐºÐ»ÑŽÑ‡ÐµÐ½Ð°? [Y/N]" << endl;
+        cout << "Ëàìïà âêëþ÷åíà? [Y/N]" << endl;
         cin >> lamp;
         if (lamp == "Y")
             isLamp = true;
         else if (lamp == "N")
             isLamp = false;
         else
-            cout << "ÐÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ñ„Ð¾Ñ€Ð¼Ð°Ñ‚ Ð²Ñ…Ð¾Ð´Ð½Ñ‹Ñ… Ð´Ð°Ð½Ð½Ñ‹Ñ…!" << endl;
+            cout << "Íåïðàâèëüíûé ôîðìàò âõîäíûõ äàííûõ!" << endl;
     }
 
     if (isDay && isCurtains || isLamp)
-        cout << "Ð’ ÐºÐ¾Ð¼Ð½Ð°Ñ‚Ðµ ÑÐ²ÐµÑ‚Ð»Ð¾";
+        cout << "Â êîìíàòå ñâåòëî";
     else
-        cout << "Ð’ ÐºÐ¾Ð¼Ð½Ð°Ñ‚Ðµ Ñ‚ÐµÐ¼Ð½Ð¾";
+        cout << "Â êîìíàòå òåìíî";
 }
 
 
@@ -119,8 +117,8 @@ int main() {
     //task1();
     //task2();
     //task3();
-    task4();
-    // task5();
+    //task4();
+    task5();
 }
 
 

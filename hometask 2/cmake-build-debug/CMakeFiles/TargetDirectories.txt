@@ -1,0 +1,3 @@
+C:/c++ projects/hometask 2/cmake-build-debug/CMakeFiles/hometask2.dir
+C:/c++ projects/hometask 2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/c++ projects/hometask 2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
