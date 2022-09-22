@@ -7,11 +7,11 @@ void task1() {
     double s, p, r, m;
     int n;
 
-    cout << "Ââåäèòå S" << endl;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ S" << endl;
     cin >> s;
-    cout << "Ââåäèòå p" << endl;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ p" << endl;
     cin >> p;
-    cout << "Ââåäèòå n" << endl;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ n" << endl;
     cin >> n;
 
     r = p / 100;
@@ -20,20 +20,27 @@ void task1() {
 }
 
 void task2() {
-    double s, r, m;
+    double s,m;
 
     int n;
-    cout << "Ââåäèòå S" << endl;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ S" << endl;
     cin >> s;
-    cout << "Ââåäèòå m" << endl;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ m" << endl;
     cin >> m;
-    cout << "Ââåäèòå n" << endl;
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ n" << endl;
     cin >> n;
 
     double minDiff = 10000000000;
-    for (int p = -10000; p <= 10000; p++) {
-
+    int answer;
+    for (int p = -1000000; p <= 1000000; p++) {
+        double r = p / 100.0;
+        double realM = s*r*pow(1+r, n) / (12*(pow(1 + r, n) - 1));
+        if (abs(realM - m) < minDiff) {
+            minDiff = abs(realM - m);
+            answer = p;
+        }
     }
+    cout << answer;
 }
 
 void task3() {
@@ -45,7 +52,7 @@ void task3() {
         }
         file.close();
     } else {
-        cout << "Îøèáêà ïðè îòêðûòèè ôàéëà" << endl;
+        cout << "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ð¸ Ñ„Ð°Ð¹Ð»Ð°" << endl;
     }
 }
 
@@ -72,35 +79,94 @@ void task4() {
         }
         file.close();
         if (k == 0)
-            cout << "Â òåêñòå ÷èñåë íåò";
+            cout << "Ð’ Ñ‚ÐµÐºÑÑ‚Ðµ Ñ‡Ð¸ÑÐµÐ» Ð½ÐµÑ‚";
     } else {
-        cout << "Îøèáêà ïðè îòêðûòèè ôàéëà" << endl;
+        cout << "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ð¸ Ñ„Ð°Ð¹Ð»Ð°" << endl;
     }
+}
+
+void merge(int array[], int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    int L[n1];
+    int R[n2];
+
+    for (int i = 0; i < n1; i++) {
+        L[i] = array[i + left];
+    }
+    for (int i = 0; i < n2; i++) {
+        R[i] = array[i + mid + 1];
+    }
+
+    int i = 0;
+    int j = 0;
+    int k = left;
+
+    while(i < n1 && j < n2) {
+        if (L[i] < R[j]) {
+            array[k] = L[i];
+            i++;
+        } else {
+            array[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        array[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        array[k] = R[j];
+        j++;
+        k++;
+    }
+
+
+}
+
+void mergesort(int array[], int left, int right) {
+    if (left >= right)
+        return;
+    int mid = (right + left) / 2;
+    mergesort(array, left, mid);
+    mergesort(array, mid + 1, right);
+    merge(array, left, mid, right);
 }
 
 void task5() {
-    int array[30];
-    cout << "Ââåäèòå 30 áóêâ:\n" ;
-    for (int i = 0; i < 30; i++) {
+    const int n = 30;
+    int array[n];
+
+    cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ 30 Ð±ÑƒÐºÐ²:\n" ;
+    for (int & i : array) {
         char x;
         cin >> x;
-        array[i] = static_cast<char>(x);
+        i = int(x);
     }
 
+    mergesort(array, 0, n - 1);
+    for (int num : array) {
+        cout << char(num);
+    }
 
 }
 
-int mergesort(int array[], int left, int right) {
-    if (left == right)
-        return array[left];
-    else {}
-}
+
+
+
 
 using namespace std;
 int main() {
     setlocale(LC_ALL, "Russian");
     //task1();
+   // task2();
     //task3();
-    task4();
+    //task4();
+    task5();
     return 0;
 }
