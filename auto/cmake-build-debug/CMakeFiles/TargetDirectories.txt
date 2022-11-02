@@ -1,0 +1,3 @@
+/home/igor/CLionProjects/рщьуефыл/Procedure-programming-homework/auto/cmake-build-debug/CMakeFiles/auto.dir
+/home/igor/CLionProjects/рщьуефыл/Procedure-programming-homework/auto/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/igor/CLionProjects/рщьуефыл/Procedure-programming-homework/auto/cmake-build-debug/CMakeFiles/rebuild_cache.dir

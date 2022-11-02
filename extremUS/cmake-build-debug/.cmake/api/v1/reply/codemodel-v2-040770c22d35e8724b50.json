@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.23"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "extremUS",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "extremUS::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-extremUS-Debug-5a681039bd44adf87a1f.json",
+					"name" : "extremUS",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/igor/CLionProjects/\u0440\u0449\u044c\u0443\u0435\u0444\u044b\u043b/Procedure-programming-homework/extremUS/cmake-build-debug",
+		"source" : "/home/igor/CLionProjects/\u0440\u0449\u044c\u0443\u0435\u0444\u044b\u043b/Procedure-programming-homework/extremUS"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
