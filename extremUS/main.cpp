@@ -5,9 +5,13 @@
 
 using namespace std;
 
+// Верхняя граница интервала
 #define UP 10.0
+// Нижняя граница интервала
 #define DOWN (-10.0)
+// Размер популяции
 #define POPULATION_SIZE 5000
+// Количество популяций
 #define MAX_GENERATION 500
 
 struct Chromosome {
@@ -37,7 +41,7 @@ struct descending {
 
 
 float f(float x, float y) {
-    return (3*x*x + x*y + 2*y*y - x - 4*y);
+    return x / (x*x + 2*y*y + 1);
 }
 
 float getRandomCoordinate() {
@@ -49,8 +53,9 @@ bool mutation() {
     return x == 1;
 }
 
-// РџРѕРёСЃРє Р»РѕРєР°Р»СЊРЅС‹С… РјРёРЅРёРјСѓРјРѕРІ
+// Поиск локальных минимумов
 void findMinimum() {
+    // Заполнение начальной популяции
     vector<Chromosome> population;
     for (int i = 0; i < POPULATION_SIZE; i++) {
         float x = getRandomCoordinate();
@@ -60,22 +65,24 @@ void findMinimum() {
         population.push_back(chrome);
     }
 
+    // Поиск экстремума
     for (int k = 0; k < MAX_GENERATION; k++) {
+        // Сортировка по возрастанию и получение альфа-самца
         sort(population.begin(), population.end(), ascending());
         Chromosome alpha = population[0];
+        // Создание нового поколения
         vector<int> newPopulation;
-        // РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ РїРѕРєРѕР»РµРЅРёСЏ
         for (int i = 0; i < POPULATION_SIZE / 2; i++) {
             Chromosome chrome1 = Chromosome(
                     alpha.x,
                     population[i].y,
                     f(alpha.x, population[i].y));
-            // РњСѓС‚Р°С†РёСЏ РїРѕ С…
+            // Мутация по х
             if (mutation()) {
                 chrome1.x = getRandomCoordinate();
                 chrome1.z = f(chrome1.x, chrome1.y);
             }
-            // РњСѓС‚Р°С†РёСЏ РїРѕ y
+            // Мутация по y
             if (mutation()) {
                 chrome1.y = getRandomCoordinate();
                 chrome1.z = f(chrome1.x, chrome1.y);
@@ -85,12 +92,12 @@ void findMinimum() {
                     population[i].x,
                     alpha.y,
                     f(population[i].x, alpha.y));
-            // РњСѓС‚Р°С†РёСЏ РїРѕ С…
+            // Мутация по х
             if (mutation()) {
                 chrome2.x = getRandomCoordinate();
                 chrome2.z = f(chrome2.x, chrome2.y);
             }
-            // РњСѓС‚Р°С†РёСЏ РїРѕ y
+            // Мутация по y
             if (mutation()) {
                 chrome2.y = getRandomCoordinate();
                 chrome2.z = f(chrome2.x, chrome2.y);
@@ -99,10 +106,10 @@ void findMinimum() {
     }
 
     sort(population.begin(), population.end(), ascending());
-    cout << population[0].x << " " << population[0].y << " " << population[0].z << endl;
+    cout << "Локальный минимум: " << "x: " << population[0].x << " y: " << population[0].y << " z: " << population[0].z << endl;
 }
 
-// РџРѕРёСЃРє Р»РѕРєР°Р»СЊРЅС‹С… РјР°РєСЃРёРјСѓРјРѕРІ
+// Поиск локальных максимумов
 void findMaximum() {
     vector<Chromosome> population;
     for (int i = 0; i < POPULATION_SIZE; i++) {
@@ -117,18 +124,18 @@ void findMaximum() {
         sort(population.begin(), population.end(), descending());
         Chromosome alpha = population[0];
         vector<int> newPopulation;
-        // РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ РїРѕРєРѕР»РµРЅРёСЏ
+        // Создание нового поколения
         for (int i = 0; i < POPULATION_SIZE / 2; i++) {
             Chromosome chrome1 = Chromosome(
                     alpha.x,
                     population[i].y,
                     f(alpha.x, population[i].y));
-            // РњСѓС‚Р°С†РёСЏ РїРѕ С…
+            // Мутация по х
             if (mutation()) {
                 chrome1.x = getRandomCoordinate();
                 chrome1.z = f(chrome1.x, chrome1.y);
             }
-            // РњСѓС‚Р°С†РёСЏ РїРѕ y
+            // Мутация по y
             if (mutation()) {
                 chrome1.y = getRandomCoordinate();
                 chrome1.z = f(chrome1.x, chrome1.y);
@@ -138,12 +145,12 @@ void findMaximum() {
                     population[i].x,
                     alpha.y,
                     f(population[i].x, alpha.y));
-            // РњСѓС‚Р°С†РёСЏ РїРѕ С…
+            // Мутация по х
             if (mutation()) {
                 chrome2.x = getRandomCoordinate();
                 chrome2.z = f(chrome2.x, chrome2.y);
             }
-            // РњСѓС‚Р°С†РёСЏ РїРѕ y
+            // Мутация по y
             if (mutation()) {
                 chrome2.y = getRandomCoordinate();
                 chrome2.z = f(chrome2.x, chrome2.y);
@@ -152,10 +159,11 @@ void findMaximum() {
     }
 
     sort(population.begin(), population.end(), descending());
-    cout << population[0].x << " " << population[0].y << " " << population[0].z << endl;
+    cout << "Локальный максимум: " << "x: " << population[0].x << " y: " << population[0].y << " z: " << population[0].z << endl;
 }
 
 int main() {
+    setlocale(LC_ALL, "Russian");
     srand(time(NULL));
     findMinimum();
     findMaximum();
